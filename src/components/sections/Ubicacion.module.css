@@ -1,0 +1,43 @@
+.locationBtnContainer {
+  margin-top: 32px;
+}
+
+.locationBtn {
+  display: inline-block;
+  background: var(--green);
+  color: #fff;
+  padding: 14px 36px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s;
+  font-family: var(--font-sans);
+}
+
+.locationBtn:hover {
+  background: var(--green-dark);
+}
+
+@media (max-width: 480px) {
+  .locationBtnContainer {
+    margin-top: 24px;
+  }
+
+  .locationBtn {
+    padding: 12px 28px;
+    font-size: 12px;
+    letter-spacing: 1px;
+  }
+}
+
+@media (max-width: 360px) {
+  .locationBtn {
+    width: 100%;
+    text-align: center;
+    padding: 12px 16px;
+  }
+}

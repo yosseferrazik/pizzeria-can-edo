@@ -23,7 +23,7 @@ export default function PrivacidadPage() {
               <li><strong>Responsable:</strong> Edoardo Gualtieri</li>
               <li><strong>Negocio:</strong> Pizzeria Can Edo</li>
               <li><strong>Dirección:</strong> Carrer Josep Tarradellas, 3, 17300 Blanes, Girona</li>
-              <li><strong>Email:</strong> <a href="mailto:info@pizzeriacanedo.com">info@pizzeriacanedo.com</a></li>
+              <li><strong>Email:</strong> —</li>
             </ul>
           </section>
 
@@ -88,7 +88,7 @@ export default function PrivacidadPage() {
               <li><strong>Oponerte</strong> a que los usemos para ciertos fines.</li>
             </ul>
             <p>
-              Escríbenos a <a href="mailto:info@pizzeriacanedo.com">info@pizzeriacanedo.com</a> para ejercer
+              Escríbenos para ejercer
               cualquiera de estos derechos. Si no quedas satisfecho, puedes reclamar ante la{" "}
               <a href="https://www.aepd.es" target="_blank" rel="noopener noreferrer">Agencia Española de Protección de Datos</a>.
             </p>

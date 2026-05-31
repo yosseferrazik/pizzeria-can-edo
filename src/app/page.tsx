@@ -250,7 +250,7 @@ function Ubicacion() {
             <div className="location-detail-icon"><Mail size={24} /></div>
             <div>
               <h4>Email</h4>
-              <a href="mailto:info@pizzeriacanedo.com">info@pizzeriacanedo.com</a>
+              —
             </div>
           </div>
 

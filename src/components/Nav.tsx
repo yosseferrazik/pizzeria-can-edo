@@ -55,6 +55,7 @@ export default function Nav({
         className={`${styles.hamburger}${menuOpen ? ` ${styles.hamburgerOpen}` : ""}`}
         onClick={() => setMenuOpen((v) => !v)}
         aria-label="Menú"
+        aria-expanded={menuOpen}
       >
         <span />
         <span />

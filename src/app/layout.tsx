@@ -15,24 +15,108 @@ const cormorant = Cormorant_Garamond({
   display: "swap",
 });
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Restaurant",
+  name: "Can Edo",
+  description:
+    "Pizzeria artesanal en Blanes. Edoardo Gualtieri, maestro pizzero italiano con más de 25 años de experiencia. Ingredientes de proximidad y biológicos. Auténtica pizza napolitana en la Costa Brava.",
+  url: "https://pizzeriacanedo.com",
+  telephone: "+34613418837",
+  servesCuisine: ["Pizza Napolitana", "Italiana", "Cocina artesanal"],
+  priceRange: "€€",
+  image: "https://pizzeriacanedo.com/images/logo.png",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "Carrer Josep Tarradellas, 3",
+    addressLocality: "Blanes",
+    addressRegion: "Girona",
+    postalCode: "17300",
+    addressCountry: "ES",
+  },
+  geo: {
+    "@type": "GeoCoordinates",
+    latitude: 41.675,
+    longitude: 2.789,
+  },
+  openingHoursSpecification: [
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday"],
+      opens: "12:30",
+      closes: "16:00",
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday"],
+      opens: "19:30",
+      closes: "23:00",
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: ["Friday", "Saturday"],
+      opens: "12:30",
+      closes: "16:00",
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: ["Friday", "Saturday"],
+      opens: "19:30",
+      closes: "00:00",
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: "Sunday",
+      opens: "12:30",
+      closes: "16:00",
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: "Sunday",
+      opens: "19:30",
+      closes: "23:00",
+    },
+  ],
+  sameAs: [
+    "https://www.instagram.com/pizzeriacanedo/",
+    "https://wa.me/34613418837",
+  ],
+};
+
 export const metadata: Metadata = {
+  metadataBase: new URL("https://pizzeriacanedo.com"),
   title: "Can Edo – Pizzeria Artesanal | Blanes, Costa Brava",
   description:
     "Pizzeria artesanal en Blanes. Edoardo Gualtieri, maestro pizzero italiano con más de 25 años de experiencia. Ingredientes de proximidad y biológicos. Auténtica pizza napolitana en la Costa Brava.",
   icons: {
-    icon: "https://pizzeriacanedo.com/wp-content/uploads/2025/02/cropped-LOGO-VERDE-FAV_Mesa-de-trabajo-1-192x192.png",
+    icon: "/images/favicon-192.png",
   },
   openGraph: {
     title: "Can Edo – Pizzeria Artesanal",
     description:
       "Pizzeria artesanal en Blanes. Edoardo Gualtieri, maestro pizzero italiano.",
+    url: "https://pizzeriacanedo.com",
+    siteName: "Can Edo",
+    locale: "es_ES",
+    type: "website",
     images: [
       {
-        url: "https://pizzeriacanedo.com/wp-content/uploads/2025/02/LOGO-1024x274.png",
+        url: "/images/logo.png",
         width: 1024,
         height: 274,
       },
     ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Can Edo – Pizzeria Artesanal",
+    description:
+      "Pizzeria artesanal en Blanes. Edoardo Gualtieri, maestro pizzero italiano.",
+    images: ["/images/logo.png"],
+  },
+  robots: {
+    index: true,
+    follow: true,
   },
 };
 
@@ -43,6 +127,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es" className={`${afacad.variable} ${cormorant.variable}`}>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body>{children}</body>
     </html>
   );

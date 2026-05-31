@@ -2,28 +2,35 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState, useCallback } from "react";
+import { MapPin, Phone, Mail } from "lucide-react";
+import Nav from "@/components/Nav";
+import Footer from "@/components/Footer";
+import WhatsAppFab from "@/components/WhatsAppFab";
+import { useReveal } from "@/hooks/useReveal";
 import styles from "./page.module.css";
 
 const IMG = {
-  logo: "https://pizzeriacanedo.com/wp-content/uploads/2025/02/LOGO-1024x274.png",
-  logoWhite:
-    "https://pizzeriacanedo.com/wp-content/uploads/2025/02/LOGO-BLANCO-1024x274.png",
-  hero: "https://upload.wikimedia.org/wikipedia/commons/d/de/Blanes_-_Passeig_de_s%27Abanell_-_View_SSW.jpg",
-  edo: "https://pizzeriacanedo.com/wp-content/uploads/2025/02/EDO-819x1024.jpg",
-  tomatoes:
-    "https://pizzeriacanedo.com/wp-content/uploads/2025/02/delicious-fresh-tomatoes-plate-high-angle-scaled.jpg",
-  romana:
-    "https://pizzeriacanedo.com/wp-content/uploads/2026/04/LAROMANA-PROX.jpg",
-  favicon:
-    "https://pizzeriacanedo.com/wp-content/uploads/2025/02/FAVICON.png",
-  moto: "https://pizzeriacanedo.com/wp-content/uploads/2026/05/MOTO.png",
-  pronto: "https://pizzeriacanedo.com/wp-content/uploads/2026/05/PRONTO.png",
-  pizza:
-    "https://pizzeriacanedo.com/wp-content/uploads/2026/05/transparent-PZZ.png",
-  romanaLogo:
-    "https://pizzeriacanedo.com/wp-content/uploads/2026/05/LA-ROMANA-1024x148.png",
+  logo: "/images/logo.png",
+  logoWhite: "/images/logo-white.png",
+  hero: "/images/hero.jpg",
+  edo: "/images/edo.jpg",
+  tomatoes: "/images/tomatoes.jpg",
+  romana: "/images/romana.jpg",
+  favicon: "/images/favicon.png",
+  moto: "/images/moto.png",
+  pronto: "/images/pronto.png",
+  pizza: "/images/pizza.png",
+  romanaLogo: "/images/romana-logo.png",
 };
+
+const NAV_LINKS = [
+  { label: "Inicio", href: "/" },
+  { label: "Historia", href: "#historia" },
+  { label: "Carta", href: "#carta" },
+  { label: "Calidad", href: "#calidad" },
+  { label: "La Romana", href: "#romana" },
+  { label: "Ubicación", href: "#ubicacion" },
+];
 
 const MENU = [
   {
@@ -52,89 +59,15 @@ const MENU = [
   },
 ];
 
-function Nav() {
-  const [scrolled, setScrolled] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 50);
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
-  useEffect(() => {
-    document.body.style.overflow = menuOpen ? "hidden" : "";
-    return () => { document.body.style.overflow = ""; };
-  }, [menuOpen]);
-
-  const closeMenu = useCallback(() => setMenuOpen(false), []);
-
-  return (
-    <nav className={`nav${scrolled ? " nav-scrolled" : ""}`}>
-      <a href="#">
-        <Image
-          className="nav-logo"
-          src={IMG.logoWhite}
-          alt="Can Edo"
-          width={160}
-          height={43}
-          priority
-        />
-      </a>
-
-      <button
-        className={`hamburger${menuOpen ? " hamburger-open" : ""}`}
-        onClick={() => setMenuOpen((v) => !v)}
-        aria-label="Menú"
-      >
-        <span />
-        <span />
-        <span />
-      </button>
-
-      <ul className={`nav-links${menuOpen ? " nav-links-open" : ""}`}>
-        <li><a href="#" onClick={closeMenu}>Inicio</a></li>
-        <li><a href="#historia" onClick={closeMenu}>Historia</a></li>
-        <li><a href="#carta" onClick={closeMenu}>Carta</a></li>
-        <li><a href="#calidad" onClick={closeMenu}>Calidad</a></li>
-        <li><a href="#romana" onClick={closeMenu}>La Romana</a></li>
-        <li><a href="#ubicacion" onClick={closeMenu}>Ubicación</a></li>
-        <li>
-          <a className="nav-cta" href="https://wa.me/34613418837" target="_blank" rel="noopener noreferrer" onClick={closeMenu}>
-            Reserva
-          </a>
-        </li>
-      </ul>
-    </nav>
-  );
-}
-
-function useReveal() {
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("reveal-visible");
-          }
-        });
-      },
-      { threshold: 0.15 }
-    );
-    const elements = document.querySelectorAll(".reveal");
-    elements.forEach((el) => observer.observe(el));
-    return () => observer.disconnect();
-  }, []);
-}
-
 function Hero() {
   return (
     <section className="hero section-full">
       <div className="hero-bg">
-        <Image src={IMG.hero} alt="Platja de Blanes" fill priority style={{ objectFit: "cover" }} />
+        <Image src={IMG.hero} alt="Platja de Blanes" fill priority sizes="100vw" />
       </div>
       <div className="hero-overlay" />
       <div className="hero-content">
+        <span className="hero-badge">Auténtica Pizza Napolitana</span>
         <Image className="hero-logo" src={IMG.logoWhite} alt="Can Edo" width={420} height={113} priority />
         <p className="hero-tagline">Blanes · Costa Brava</p>
       </div>
@@ -154,7 +87,7 @@ function Hero() {
 function Announcement() {
   return (
     <section className="announcement section-full">
-      <Image src={IMG.romana} alt="Próximamente La Romana" width={300} height={300} />
+      <Image src={IMG.romana} alt="Próximamente La Romana" width={300} height={300} loading="lazy" />
     </section>
   );
 }
@@ -166,10 +99,10 @@ function Historia() {
       <div className="history-grid">
         <div className="history-image reveal">
           <div className="history-badge">Italian Chef</div>
-          <Image src={IMG.edo} alt="Edoardo Gualtieri" width={600} height={750} />
+          <Image src={IMG.edo} alt="Edoardo Gualtieri" width={600} height={750} priority />
         </div>
         <div className="history-text reveal">
-          <h2>Bienvenidos a</h2>
+          <h2 id="bienvenidos">Bienvenidos a</h2>
           <h3>Pizzeria Can Edo</h3>
           <p className="name">Edoardo Gualtieri</p>
           <p>
@@ -234,7 +167,7 @@ function Calidad() {
         <p className="section-subtitle">Filosofía</p>
         <div className="quality-grid">
           <div className="quality-text reveal">
-            <h2>El gusto es biológico y de proximidad</h2>
+            <h2 id="filosofia">El gusto es biológico y de proximidad</h2>
             <p>
               Todos nuestros productos se realizan utilizando exclusivamente materias primas de
               proximidad, haciendo red con productores locales, y serán acompañados por vinos de
@@ -250,7 +183,7 @@ function Calidad() {
             </ul>
           </div>
           <div className="quality-image reveal">
-            <Image src={IMG.tomatoes} alt="Ingredientes frescos" width={600} height={500} />
+            <Image src={IMG.tomatoes} alt="Ingredientes frescos" width={600} height={500} loading="lazy" />
           </div>
         </div>
       </div>
@@ -265,19 +198,19 @@ function Romana() {
         <div className="romana-track">
           {Array.from({ length: 4 }).map((_, i) => (
             <span key={i} style={{ display: "flex", gap: 40, alignItems: "center" }}>
-              <Image src={IMG.moto} alt="" width={100} height={100} />
-              <Image src={IMG.pronto} alt="" width={200} height={100} />
+              <Image src={IMG.moto} alt="" width={100} height={100} loading="lazy" />
+              <Image src={IMG.pronto} alt="" width={200} height={100} loading="lazy" />
             </span>
           ))}
         </div>
       </div>
 
       <div className="romana-image reveal">
-        <Image src={IMG.pizza} alt="Pizza artesanal" width={200} height={200} />
+        <Image src={IMG.pizza} alt="Pizza artesanal" width={200} height={200} loading="lazy" />
       </div>
       <div className="romana-tag reveal">Próximamente</div>
       <div className="reveal">
-        <Image src={IMG.romanaLogo} alt="La Romana" width={500} height={72} />
+        <Image src={IMG.romanaLogo} alt="La Romana" width={500} height={72} loading="lazy" />
       </div>
       <p className="reveal">
         Estamos trabajando para abrir las puertas de nuestra segunda ubicación.
@@ -298,7 +231,7 @@ function Ubicacion() {
           <p className="region">Costa Brava</p>
 
           <div className="location-detail">
-            <div className="location-detail-icon">📍</div>
+            <div className="location-detail-icon"><MapPin size={24} /></div>
             <div>
               <h4>Dirección</h4>
               <p>Carrer Josep Tarradellas, 3, 17300 Blanes, Girona</p>
@@ -306,7 +239,7 @@ function Ubicacion() {
           </div>
 
           <div className="location-detail">
-            <div className="location-detail-icon">📞</div>
+            <div className="location-detail-icon"><Phone size={24} /></div>
             <div>
               <h4>Teléfono</h4>
               <a className="location-phone" href="tel:+34613418837">+34 613 418 837</a>
@@ -314,7 +247,7 @@ function Ubicacion() {
           </div>
 
           <div className="location-detail">
-            <div className="location-detail-icon">✉</div>
+            <div className="location-detail-icon"><Mail size={24} /></div>
             <div>
               <h4>Email</h4>
               <a href="mailto:info@pizzeriacanedo.com">info@pizzeriacanedo.com</a>
@@ -342,45 +275,12 @@ function Ubicacion() {
   );
 }
 
-function Footer() {
-  return (
-    <footer className="footer section-full">
-      <div className="footer-social">
-        <a href="https://wa.me/34613418837" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">💬</a>
-        <a href="https://www.instagram.com/pizzeriacanedo/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">📷</a>
-      </div>
-
-      <p className="footer-brand">Can Edo</p>
-      <p>Carrer Josep Tarradellas, 3 · 17300 Blanes · Girona</p>
-      <p><a href="tel:+34613418837">+34 613 418 837</a></p>
-
-      <p className="footer-credit">
-        Copyright &copy; {new Date().getFullYear()} Pizzeria Can Edo –&nbsp;
-        <a href="https://112studio112.com/" target="_blank" rel="noopener noreferrer">112 Studio</a>
-        <br />
-        Web desarrollada por <strong>Yossef Errazik</strong>
-        <br />
-        Foto: <a href="https://commons.wikimedia.org/wiki/File:Blanes_-_Passeig_de_s%27Abanell_-_View_SSW.jpg" target="_blank" rel="noopener noreferrer">Txllxt TxllxT</a>
-        {" "}&copy; <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer">CC-BY-SA-4.0</a>
-      </p>
-    </footer>
-  );
-}
-
-function WhatsAppFab() {
-  return (
-    <a className="whatsapp-fab" href="https://wa.me/34613418837" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
-      💬
-    </a>
-  );
-}
-
 export default function Home() {
   useReveal();
 
   return (
     <>
-      <Nav />
+      <Nav links={NAV_LINKS} logoHref="/" />
       <Hero />
       <Announcement />
       <Historia />

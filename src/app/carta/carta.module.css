@@ -34,6 +34,27 @@
   color: #fff;
 }
 
+.scrollNavBtn {
+  position: relative;
+}
+
+.scrollNavBtn.active::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 10%;
+  width: 80%;
+  height: 2px;
+  background: var(--green);
+  border-radius: 2px;
+  animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+  from { width: 0; left: 50%; }
+  to { width: 80%; left: 10%; }
+}
+
 @media (max-width: 768px) {
   .scrollNav {
     padding: 6px 12px;
@@ -41,22 +62,25 @@
   }
 
   .scrollNavBtn {
-    padding: 6px 14px;
+    padding: 10px 12px;
     font-size: 11px;
+    min-height: 40px;
     letter-spacing: 0.5px;
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 360px) {
   .scrollNavBtn {
-    padding: 5px 12px;
+    padding: 8px 10px;
     font-size: 10px;
+    letter-spacing: 0;
   }
 }
 
 /* Hero */
 .heroSection {
   height: 75vh;
+  height: 75dvh;
   min-height: 520px;
   display: flex;
   align-items: center;
@@ -75,6 +99,7 @@
 @media (max-width: 480px) {
   .heroSection {
     height: 50vh;
+    height: 50dvh;
     min-height: 300px;
   }
 }
@@ -82,6 +107,13 @@
 .heroBg {
   position: absolute;
   inset: 0;
+}
+
+.heroBg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 35%;
 }
 
 .heroOverlay {
@@ -111,6 +143,26 @@
   text-transform: uppercase;
   margin-bottom: 16px;
   font-family: var(--font-sans);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+
+.heroSubtitle::before,
+.heroSubtitle::after {
+  content: "";
+  width: 40px;
+  height: 1px;
+  background: var(--gold);
+  opacity: 0.4;
+}
+
+@media (max-width: 480px) {
+  .heroSubtitle::before,
+  .heroSubtitle::after {
+    width: 24px;
+  }
 }
 
 @media (max-width: 768px) {
@@ -171,6 +223,18 @@
   gap: 16px;
   justify-content: center;
   flex-wrap: wrap;
+}
+
+@media (max-width: 360px) {
+  .heroBtnGroup {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .heroBtnGroup a {
+    text-align: center;
+  }
 }
 
 @media (max-width: 480px) {
@@ -275,8 +339,20 @@
 /* Barra info */
 .infoStrip {
   background: var(--green);
-  padding: 20px 16px;
+  padding: 20px 24px;
   text-align: center;
+}
+
+@media (max-width: 480px) {
+  .infoStrip {
+    padding: 16px 20px;
+  }
+}
+
+@media (max-width: 360px) {
+  .infoStrip {
+    padding: 14px 16px;
+  }
 }
 
 @media (max-width: 768px) {
@@ -305,6 +381,14 @@
   .infoStripText {
     font-size: 11px;
     letter-spacing: 0.5px;
+    word-break: break-word;
+  }
+}
+
+@media (max-width: 360px) {
+  .infoStripText {
+    font-size: 10px;
+    letter-spacing: 0;
   }
 }
 
@@ -323,7 +407,13 @@
 
 @media (max-width: 480px) {
   .sectionContent {
-    padding: 40px 16px;
+    padding: 40px 20px;
+  }
+}
+
+@media (max-width: 360px) {
+  .sectionContent {
+    padding: 32px 16px;
   }
 }
 
@@ -341,7 +431,13 @@
 
 @media (max-width: 480px) {
   .sectionContentWide {
-    padding: 40px 16px;
+    padding: 40px 20px;
+  }
+}
+
+@media (max-width: 360px) {
+  .sectionContentWide {
+    padding: 32px 16px;
   }
 }
 
@@ -359,7 +455,13 @@
 
 @media (max-width: 480px) {
   .sectionContentFull {
-    padding: 40px 16px 60px;
+    padding: 40px 20px 60px;
+  }
+}
+
+@media (max-width: 360px) {
+  .sectionContentFull {
+    padding: 32px 16px 48px;
   }
 }
 
@@ -380,18 +482,6 @@
   }
 }
 
-/* Animación reveal */
-.revealItem {
-  opacity: 0;
-  transform: translateY(28px);
-  transition: opacity 0.7s ease, transform 0.7s ease;
-}
-
-.revealItem.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
 /* CTA */
 .ctaSection {
   background: linear-gradient(135deg, var(--dark) 0%, #2d2d2d 100%);
@@ -409,7 +499,18 @@
 
 @media (max-width: 480px) {
   .ctaSection {
-    padding: 60px 16px;
+    padding: 60px 20px;
+  }
+}
+
+@media (max-width: 360px) {
+  .ctaSection {
+    padding: 48px 16px;
+  }
+
+  .ctaBtn {
+    width: 100%;
+    text-align: center;
   }
 }
 
@@ -542,7 +643,8 @@
 
 .dividerIcon {
   color: var(--green);
-  font-size: 18px;
+  display: inline-flex;
+  align-items: center;
 }
 
 /* Cabecera sección */
@@ -564,8 +666,7 @@
 }
 
 .sectionHeaderIcon {
-  font-size: 32px;
-  display: block;
+  display: inline-flex;
   margin-bottom: 12px;
 }
 
@@ -589,6 +690,17 @@
   font-weight: 700;
   color: var(--dark);
   margin-bottom: 8px;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+
+.sectionHeaderSubtitle {
+  font-size: 15px;
+  color: var(--text-light);
+  max-width: 550px;
+  margin: 0 auto;
+  letter-spacing: 1px;
+  font-weight: 300;
 }
 
 .sectionHeaderSubtitle {
@@ -608,4 +720,336 @@
   .sectionHeaderSubtitle {
     font-size: 13px;
   }
+}
+
+/* Pizza card wrapper */
+.pizzaCardOuter {
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+/* Pizza card */
+.pizzaCardInner {
+  background: #fff;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.06);
+  transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.pizzaCardInner:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 16px 48px rgba(96, 141, 47, 0.15);
+  border-color: rgba(96, 141, 47, 0.15);
+}
+
+.pizzaCardInner {
+  border: 1px solid rgba(96, 141, 47, 0.04);
+}
+
+.pizzaCardImage {
+  padding: 20px 24px 0;
+  display: flex;
+  justify-content: center;
+}
+
+@media (max-width: 480px) {
+  .pizzaCardImage {
+    padding: 12px 16px 0;
+  }
+
+  .pizzaCardImage img {
+    width: 70px;
+    height: 70px;
+  }
+}
+
+.pizzaCardImage img {
+  object-fit: contain;
+  opacity: 0.85;
+}
+
+.pizzaCardBody {
+  padding: 16px 24px 24px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (max-width: 480px) {
+  .pizzaCardBody {
+    padding: 12px 16px 16px;
+  }
+}
+
+.pizzaCardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+}
+
+.pizzaCardName {
+  font-family: var(--font-serif);
+  font-size: 21px;
+  font-weight: 700;
+  color: var(--dark);
+}
+
+.pizzaCardPrice {
+  font-family: var(--font-serif);
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--green);
+  white-space: nowrap;
+}
+
+.pizzaCardDesc {
+  font-size: 13.5px;
+  color: var(--text-light);
+  line-height: 1.6;
+  flex: 1;
+}
+
+/* Scroll nav mejorado */
+@media (max-width: 768px) {
+  .scrollNav {
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .scrollNavBtn {
+    scroll-snap-align: start;
+    flex-shrink: 0;
+  }
+}
+
+/* Map responsive */
+@media (max-width: 768px) {
+  .location-map iframe {
+    border-radius: 12px;
+  }
+}
+
+/* CTA section pizzas background */
+.pizzaSection {
+  padding: 80px 24px 100px;
+  background: var(--cream);
+}
+
+@media (max-width: 768px) {
+  .pizzaSection {
+    padding: 60px 20px 80px;
+  }
+}
+
+@media (max-width: 480px) {
+  .pizzaSection {
+    padding: 40px 20px 60px;
+  }
+}
+
+@media (max-width: 360px) {
+  .pizzaSection {
+    padding: 32px 16px 48px;
+  }
+}
+
+/* Postres section */
+.postresSection {
+  padding: 80px 24px;
+  max-width: 900px;
+  margin: 0 auto;
+  background: var(--cream);
+  border-radius: 40px 40px 0 0;
+}
+
+@media (max-width: 768px) {
+  .postresSection {
+    padding: 60px 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .postresSection {
+    padding: 40px 20px;
+  }
+}
+
+.postresGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+}
+
+@media (max-width: 360px) {
+  .postresGrid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}
+
+.postresCard {
+  background: #fff;
+  border-radius: 14px;
+  padding: 28px 24px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+  text-align: center;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.postresCard:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 36px rgba(96, 141, 47, 0.12);
+  border-color: rgba(96, 141, 47, 0.15);
+}
+
+.postresCard {
+  border: 1px solid rgba(96, 141, 47, 0.04);
+}
+
+.postresCardName {
+  font-family: var(--font-serif);
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--dark);
+  display: block;
+  margin-bottom: 6px;
+}
+
+.postresCardDesc {
+  font-size: 14px;
+  color: var(--text-light);
+  margin-bottom: 12px;
+}
+
+.postresCardPrice {
+  font-family: var(--font-serif);
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--green-dark);
+}
+
+/* Drink cards */
+.drinkCard {
+  background: #fff;
+  border-radius: 14px;
+  padding: 28px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.drinkCard:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 36px rgba(96, 141, 47, 0.12);
+  border-color: rgba(96, 141, 47, 0.15);
+}
+
+.drinkCard {
+  border: 1px solid rgba(96, 141, 47, 0.04);
+}
+
+.drinkCard h3 {
+  font-family: var(--font-serif);
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--green-dark);
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid var(--cream);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+@media (max-width: 480px) {
+  .drinkCard {
+    padding: 20px;
+  }
+
+  .drinkCard h3 {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 360px) {
+  .drinkCard {
+    padding: 16px;
+  }
+}
+
+/* MenuRow hover */
+.menuRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 16px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  transition: background 0.25s, padding-left 0.25s, opacity 0.7s ease, transform 0.7s ease;
+  border-radius: 8px;
+  margin: 0 -8px;
+  padding: 16px 8px;
+}
+
+.menuRow:hover {
+  background: rgba(96, 141, 47, 0.03);
+  padding-left: 16px;
+}
+
+/* Ensaladas note */
+.saladsNote {
+  font-size: 13px;
+  color: var(--text-light);
+  font-style: italic;
+  text-align: center;
+}
+
+/* Extras bar */
+.extrasBar {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px 28px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+}
+
+@media (max-width: 480px) {
+  .extrasBar {
+    padding: 16px 16px;
+    gap: 6px;
+  }
+
+  .extrasItem {
+    font-size: 12px;
+    padding: 3px 10px;
+  }
+}
+
+.extrasLabel {
+  font-family: var(--font-serif);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--dark);
+  margin-right: 8px;
+  align-self: center;
+}
+
+.extrasItem {
+  background: var(--cream);
+  padding: 4px 14px;
+  border-radius: 20px;
+  font-size: 13px;
+  color: var(--text);
+}
+
+@keyframes scrollPulse {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 1; }
 }

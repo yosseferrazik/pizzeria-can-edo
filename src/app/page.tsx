@@ -1,12 +1,10 @@
-"use client";
-
 import Image from "next/image";
 import Link from "next/link";
 import { MapPin, Phone, Mail } from "lucide-react";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import WhatsAppFab from "@/components/WhatsAppFab";
-import { useReveal } from "@/hooks/useReveal";
+import RevealWrapper from "@/components/RevealWrapper";
 import styles from "./page.module.css";
 
 const IMG = {
@@ -276,10 +274,8 @@ function Ubicacion() {
 }
 
 export default function Home() {
-  useReveal();
-
   return (
-    <>
+    <RevealWrapper>
       <Nav links={NAV_LINKS} logoHref="/" />
       <Hero />
       <Announcement />
@@ -290,6 +286,6 @@ export default function Home() {
       <Ubicacion />
       <Footer />
       <WhatsAppFab />
-    </>
+    </RevealWrapper>
   );
 }

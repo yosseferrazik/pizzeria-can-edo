@@ -23,7 +23,7 @@ export default function AvisoLegalPage() {
               <li><strong>Titular:</strong> Edoardo Gualtieri</li>
               <li><strong>Negocio:</strong> Pizzeria Can Edo</li>
               <li><strong>Dirección:</strong> Carrer Josep Tarradellas, 3, 17300 Blanes, Girona</li>
-              <li><strong>Teléfono:</strong> <a href="tel:+34613418837">+34 613 418 837</a></li>
+              <li><strong>Teléfono:</strong><a href="tel:+34613418837">+34 613 418 837</a></li>
               <li><strong>Email:</strong> —</li>
             </ul>
           </section>

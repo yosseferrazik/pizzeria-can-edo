@@ -1008,18 +1008,6 @@ img {
   }
 }
 
-.romana-pizza {
-  max-width: 200px;
-  margin: 0 auto 32px;
-}
-
-@media (max-width: 480px) {
-  .romana-pizza {
-    max-width: 120px;
-    margin: 0 auto 20px;
-  }
-}
-
 /* Ubicación */
 .location-grid {
   display: grid;
@@ -1260,26 +1248,6 @@ img {
   background: rgba(201, 168, 76, 0.1);
 }
 
-.btn-secondary-sm {
-  display: inline-block;
-  background: transparent;
-  color: #fff;
-  padding: 12px 28px;
-  border-radius: 6px;
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  transition: all 0.3s;
-  font-family: var(--font-sans);
-  border: 2px solid rgba(255, 255, 255, 0.25);
-  cursor: pointer;
-}
-
-.btn-secondary-sm:hover {
-  border-color: var(--gold);
-}
-
 /* Badges */
 .badge {
   display: inline-block;
@@ -1309,19 +1277,6 @@ img {
   border: 1px solid var(--green);
 }
 
-/* Card base */
-.card {
-  background: #fff;
-  border-radius: 16px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
-  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-.card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-}
-
 /* Focus inputs */
 input:focus,
 textarea:focus,
@@ -1331,11 +1286,4 @@ select:focus {
   box-shadow: 0 0 0 3px rgba(96, 141, 47, 0.1);
 }
 
-/* Terracotta accent button */
-.btn-terracotta {
-  background: var(--terracotta);
-  color: #fff;
-}
-.btn-terracotta:hover {
-  background: #a83d1f;
-}
+

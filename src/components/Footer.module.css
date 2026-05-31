@@ -135,8 +135,31 @@
   transform: translateY(-2px);
 }
 
-.footerCredit {
+.footerLegal {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
   margin-top: 32px;
+  font-size: 12px;
+}
+
+.footerLegal a {
+  color: rgba(245, 240, 232, 0.5);
+  transition: color 0.3s;
+  border-bottom: 1px solid transparent;
+}
+
+.footerLegal a:hover {
+  color: var(--gold);
+  border-color: var(--gold);
+}
+
+.footerLegal span {
+  color: rgba(245, 240, 232, 0.2);
+}
+
+.footerCredit {
+  margin-top: 16px;
   padding-top: 24px;
   border-top: 1px solid rgba(245, 240, 232, 0.08);
   font-size: 12px;

@@ -34,6 +34,14 @@ export default function Footer() {
         </div>
       </div>
 
+      <nav className={styles.footerLegal}>
+        <a href="/aviso-legal">Aviso Legal</a>
+        <span aria-hidden="true">·</span>
+        <a href="/privacidad">Privacidad</a>
+        <span aria-hidden="true">·</span>
+        <a href="/cookies">Cookies</a>
+      </nav>
+
       <p className={styles.footerCredit}>
         Copyright &copy; {new Date().getFullYear()} Pizzeria Can Edo –&nbsp;
         <a href="https://112studio112.com/" target="_blank" rel="noopener noreferrer">112 Studio</a>

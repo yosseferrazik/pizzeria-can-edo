@@ -987,22 +987,30 @@ img {
   }
 }
 
-.romana p {
-  color: rgba(245, 240, 232, 0.7);
-  max-width: 500px;
+.romana-content {
+  max-width: 520px;
   margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+.romana-content p {
+  color: rgba(245, 240, 232, 0.7);
   font-size: 16px;
   line-height: 1.8;
+  text-align: center;
 }
 
 @media (max-width: 768px) {
-  .romana p {
+  .romana-content p {
     font-size: 15px;
   }
 }
 
 @media (max-width: 480px) {
-  .romana p {
+  .romana-content p {
     font-size: 14px;
     line-height: 1.6;
   }

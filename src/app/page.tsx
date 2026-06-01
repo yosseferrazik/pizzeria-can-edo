@@ -209,14 +209,14 @@ function Romana() {
         <Image src={IMG.pizza} alt="Pizza artesanal" width={200} height={200} loading="lazy" />
       </div>
       <div className="romana-tag reveal">Próximamente</div>
-      <div className="reveal">
+      <div className="romana-content reveal">
         <Image src={IMG.romanaLogo} alt="La Romana" width={500} height={72} loading="lazy" />
+        <p>
+          Estamos trabajando para abrir las puertas de nuestra segunda ubicación.
+          Un nuevo espacio donde seguir compartiendo nuestra pasión por la pizza artesanal.
+          Síguenos para estar al tanto de las novedades.
+        </p>
       </div>
-      <p className="reveal">
-        Estamos trabajando para abrir las puertas de nuestra segunda ubicación.
-        Un nuevo espacio donde seguir compartiendo nuestra pasión por la pizza artesanal.
-        Síguenos para estar al tanto de las novedades.
-      </p>
     </section>
   );
 }
